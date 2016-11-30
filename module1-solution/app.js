@@ -1,22 +1,39 @@
 (function () {
-'use strict';
+  'use strict';
 
-angular.module('LunchCheck', [])
-.controller('LunchCheckController', LunchCheckController);
+  angular.module('LunchCheck', [])
+  .controller('LunchCheckController', LunchCheckController);
 
-LunchCheckController.$inject = ['$scope'];
-function LunchCheckController($scope) {
-  $scope.shoppingList1 = shoppingList1;
-  $scope.shoppingList2 = shoppingList2;
+  LunchCheckController.$inject = ['$scope'];
 
-  $scope.addToList = function () {
-    var newItem = {
-      name: $scope.newItemName,
-      quantity: $scope.newItemQuantity
+  function LunchCheckController($scope) {
+    $scope.checkIfTooMuch = function () {
+      var itemCountMsg = countItems($scope.items);
+      $scope.msg = itemCountMsg;
     };
+  }
 
-    $scope.shoppingList2.push(newItem);
+  function countItems(str) {
+    var itemCountMsg = "";
+    if(str == "" || str == undefined) {
+      itemCountMsg = "Please enter data first";
+    }
+    else{
+      var array = str.split(",");
+      var count=0;
+      for (var i = 0; i < array.length; i++) {
+        if(array[i].trim()!=""){
+          count++;
+        }
+      }
+      if(count<=3){
+        itemCountMsg = "Enjoy!";
+      }
+      else {
+        itemCountMsg = "Too much!";
+      }
+    }
+    return itemCountMsg;
   };
-}
 
 })();
