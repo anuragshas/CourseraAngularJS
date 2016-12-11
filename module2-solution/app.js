@@ -6,6 +6,7 @@ angular.module('ShoppingListCheckOff', [])
 .controller('AlreadyBoughtListController', AlreadyBoughtListController)
 .service('ShoppingListCheckOffService', ShoppingListCheckOffService);
 
+
 //TO Buy List controller
 ToBuyListController.$inject = ['ShoppingListCheckOffService'];
 function ToBuyListController(ShoppingListCheckOffService) {
